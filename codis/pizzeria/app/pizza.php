@@ -1,12 +1,13 @@
 <?php
 	$pvp = 10;
+	$IVA = 21; // línia afegida darrere de la línia 2
 	if (empty($_GET['ingr'])) {
-		echo "Has demanat només la pizza bàsica. El preu és $pvp € (IVA inclòs)<br>";
-		exit(0);
+		$pvp_public = $pvp; // inicialitzem el preu base
+		$pvp_public = $pvp_public * $IVA; // nova línia 5
+		echo "El preu de la pizza bàsica és $pvp_public € (IVA inclòs)<br>"; // nova línia 6
 	}
 	else {
-		$IVA=21;
-$pvp_public=((100+$IVA)/100)*($pvp+count($_GET['ingr']));
+		$pvp_public = ((100 + $IVA) / 100) * ($pvp + count($_GET['ingr']));
 		echo "Has demanat la pizza bàsica amb:<br> ";
 		foreach ($_GET['ingr'] as $ingredient) {
 			if ($ingredient) {
